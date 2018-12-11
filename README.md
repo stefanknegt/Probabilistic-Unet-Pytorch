@@ -27,7 +27,7 @@ for epoch in range(epochs):
         mask = torch.unsqueeze(mask,1)
         net.forward(patch, mask, training=True)
         elbo = net.elbo(mask)
-        reg_loss = l2_regularisation(net.posterior) + l2_regularisation(net.prior) + l2_regularisation(net.fcomb)
+        reg_loss = l2_regularisation(net.posterior) + l2_regularisation(net.prior) + l2_regularisation(net.fcomb.layers)
         loss = -elbo + 1e-5 * reg_loss
         optimizer.zero_grad()
         loss.backward()
@@ -46,7 +46,7 @@ from load_LIDC_data import LIDC_IDRI
 dataset = LIDC_IDRI(dataset_location = 'insert_path_here')
 dataset_size = len(dataset)
 indices = list(range(dataset_size))
-split = int(np.floor(test_split * dataset_size))
+split = int(np.floor(0.1 * dataset_size))
 np.random.shuffle(indices)
 train_indices, test_indices = indices[split:], indices[:split]
 train_sampler = SubsetRandomSampler(train_indices)

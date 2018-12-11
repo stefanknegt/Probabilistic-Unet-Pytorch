@@ -38,6 +38,7 @@ for epoch in range(epochs):
 One of the datasets used in the original paper is the [LIDC dataset](https://wiki.cancerimagingarchive.net). I've preprocessed this data and stored them in 5 .pickle files which you can [download here](https://drive.google.com/drive/folders/1xKfKCQo8qa6SAr3u7qWNtQjIphIrvmd5?usp=sharing). After downloading the files you can load the data as follows:
 ```
 import torch
+import numpy as np
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 from load_LIDC_data import LIDC_IDRI

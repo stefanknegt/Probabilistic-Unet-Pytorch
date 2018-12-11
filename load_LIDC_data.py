@@ -29,17 +29,9 @@ class LIDC_IDRI(Dataset):
                 data.update(new_data)
         
         for key, value in data.items():
-            only_zeros = 0
-            x = value['image'].astype(float)
-            for m in value['masks']:
-                if np.count_nonzero(m) == 0:
-                    only_zeros += 1
-
-            #Here we ignore images where 2 or more annotators annotate no nodule
-            if only_zeros < 2:
-                self.images.append(x)
-                self.labels.append(value['masks'])
-                self.series_uid.append(value['series_uid'])
+            self.images.append(value['image'].astype(float))
+            self.labels.append(value['masks'])
+            self.series_uid.append(value['series_uid'])
 
         assert (len(self.images) == len(self.labels) == len(self.series_uid))
 

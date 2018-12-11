@@ -3,7 +3,6 @@
 from unet_blocks import *
 from unet import Unet
 from utils import init_weights,init_weights_orthogonal_normal, l2_regularisation
-from losses import lovasz_hinge, dice_loss, binary_xloss
 import torch.nn.functional as F
 from torch.distributions import Normal, Independent, kl
 
@@ -276,8 +275,5 @@ class ProbabilisticUnet(nn.Module):
         reconstruction_loss = criterion(input=self.reconstruction, target=segm)
         self.reconstruction_loss = torch.sum(reconstruction_loss)
         self.mean_reconstruction_loss = torch.mean(reconstruction_loss)
-
-        #self.reconstruction_loss = dice_loss(torch.sigmoid(self.reconstruction), segm)
-        #self.reconstruction_loss = lovasz_hinge(self.reconstruction, segm)
 
         return -(self.reconstruction_loss + self.beta * self.kl)

@@ -46,7 +46,7 @@ from load_LIDC_data import LIDC_IDRI
 dataset = LIDC_IDRI(dataset_location = 'insert_path_here')
 dataset_size = len(dataset)
 indices = list(range(dataset_size))
-split = int(np.floor(test_split * dataset_size))
+split = int(np.floor(0.1 * dataset_size))
 np.random.shuffle(indices)
 train_indices, test_indices = indices[split:], indices[:split]
 train_sampler = SubsetRandomSampler(train_indices)

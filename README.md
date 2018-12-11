@@ -11,7 +11,7 @@ def _kl_independent_independent(p, q):
     result = kl_divergence(p.base_dist, q.base_dist)
     return _sum_rightmost(result, p.reinterpreted_batch_ndims)
 ```
-    
+
 ## Training
 In order to train your own Probabilistic UNet in PyTorch, you should first write your own data loader. Then you can use the following code snippet to train the network
 
@@ -33,3 +33,7 @@ for epoch in range(epochs):
         loss.backward()
         optimizer.step()
 ```
+
+## Train on LIDC Dataset
+One of the datasets used in the original paper is the LIDC dataset (https://wiki.cancerimagingarchive.net). I've preprocessed this data and stored them in 5 .pickle files which you can [download here](https://drive.google.com/drive/folders/1xKfKCQo8qa6SAr3u7qWNtQjIphIrvmd5?usp=sharing). After downloading the files you need to adjust the path in the data loader and you can start training your own Probabilistic UNet using the code snippet above.
+

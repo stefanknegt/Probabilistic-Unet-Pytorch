@@ -35,5 +35,10 @@ for epoch in range(epochs):
 ```
 
 ## Train on LIDC Dataset
-One of the datasets used in the original paper is the [LIDC dataset](https://wiki.cancerimagingarchive.net). I've preprocessed this data and stored them in 5 .pickle files which you can [download here](https://drive.google.com/drive/folders/1xKfKCQo8qa6SAr3u7qWNtQjIphIrvmd5?usp=sharing). After downloading the files you need to adjust the path in the data loader and you can start training your own Probabilistic UNet using the code snippet above.
+One of the datasets used in the original paper is the [LIDC dataset](https://wiki.cancerimagingarchive.net). I've preprocessed this data and stored them in 5 .pickle files which you can [download here](https://drive.google.com/drive/folders/1xKfKCQo8qa6SAr3u7qWNtQjIphIrvmd5?usp=sharing). After downloading the files you can load the data as follows:
+```
+from load_LIDC_data import LIDC_IDRI
+dataset = LIDC_IDRI(dataset_location = 'insert_path_here')
+```
+Combining this with the training code snippet above, you can start training your own Probabilistic UNet.
 

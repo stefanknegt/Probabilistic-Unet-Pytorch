@@ -223,8 +223,9 @@ class ProbabilisticUnet(nn.Module):
             z_prior = self.prior_latent_space.rsample()
             self.z_prior_sample = z_prior
         else:
-            #Here we want the highest probability segmentation (during test/evaluation)
-            z_prior = self.prior_latent_space.base_dist.loc 
+            #You can choose whether you mean a sample or the mean here. For the GED it is important to take a sample.
+            #z_prior = self.prior_latent_space.base_dist.loc 
+            z_prior = self.prior_latent_space.sample()
             self.z_prior_sample = z_prior
         return self.fcomb.forward(self.unet_features,z_prior)
 

@@ -19,9 +19,6 @@ class Unet(nn.Module):
         self.padding = padding
         self.activation_maps = []
         self.apply_last_layer = apply_last_layer
-        print("No of classes: %d \nNo of input channels: %d \nNo of filters first layer: %d \nPadding: %d"
-        % (self.num_classes, self.input_channels, self.num_filters[0], self.padding))
-
         self.contracting_path = nn.ModuleList()
 
         for i in range(len(self.num_filters)):
